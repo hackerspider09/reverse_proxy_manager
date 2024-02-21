@@ -1,25 +1,26 @@
 version: '3'
 
 services:
-  # app:
-  #   image: 'jc21/nginx-proxy-manager:latest'
-  #   restart: unless-stopped
-  #   ports:
-  #     - '80:8080'
-  #     - '81:81'
-  #     - '443:443'
-  #   volumes:
-  #     - ./data:/data
-  #     - ./letsencrypt:/etc/letsencrypt
-  #   depends_on:
-  #     - web
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '8080:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    depends_on:
+      - web
+      - nginx
 
   nginx:
     build: ./nginx
     volumes:
       - ./static:/app/static
     ports:
-      - "80:80"
+      - "801:80"
       # - "443:443"
     depends_on:
       - web

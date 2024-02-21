@@ -32,8 +32,6 @@ services:
       - static_volume:/app/static
     env_file:
       - .env
-    ports:
-      - '8000:8000'
     # restart: "on-failure"
 
 
